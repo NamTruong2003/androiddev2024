@@ -10,7 +10,8 @@ Students are expected to:
 Student Info
 =======================
 
-* Name: *YourNameHere*
-* ID: *YourIdHere*
+* Name: Truong Quang Nam
+* ID: BA12-134
+
 * Group ID: *Your Group ID here*
 * Project Name: *Your Project Name here*
