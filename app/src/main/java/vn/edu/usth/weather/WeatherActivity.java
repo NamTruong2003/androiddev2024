@@ -26,7 +26,7 @@ public class WeatherActivity extends AppCompatActivity {
             return insets;
         });
         ForecastFragment firstFragment = new ForecastFragment();
-
+        // transfer to Forecast fragment
         getSupportFragmentManager().beginTransaction().add(R.id.main, firstFragment).commit();
     }
     @Override
