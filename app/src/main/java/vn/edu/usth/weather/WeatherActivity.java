@@ -1,5 +1,6 @@
 package vn.edu.usth.weather;
 
+
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
 public class WeatherActivity extends AppCompatActivity {
     private static final String TAG = "FunctionTracing";
@@ -19,6 +21,9 @@ public class WeatherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+
+
         Log.i(TAG,"my app create");
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_weather);
@@ -27,9 +32,10 @@ public class WeatherActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-//        ForecastFragment firstFragment = new ForecastFragment();
-//        // transfer to Forecast fragment
-//        getSupportFragmentManager().beginTransaction().add(R.id.main, firstFragment).commit();
+        HomeFragmentPagerAdapter adapter = new HomeFragmentPagerAdapter(getSupportFragmentManager());
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        pager.setOffscreenPageLimit(3);
+        pager.setAdapter(adapter);
 
 
     }
