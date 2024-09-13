@@ -6,6 +6,10 @@
     android:orientation="vertical"
     tools:context=".WeatherAndForecastFragment" >
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="vn.edu.usth.weather.WeatherFragment"

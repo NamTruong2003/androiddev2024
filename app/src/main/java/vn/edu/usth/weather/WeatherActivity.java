@@ -14,6 +14,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.tabs.TabLayout;
+
+
 public class WeatherActivity extends AppCompatActivity {
     private static final String TAG = "FunctionTracing";
 
@@ -36,6 +39,8 @@ public class WeatherActivity extends AppCompatActivity {
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
         pager.setOffscreenPageLimit(3);
         pager.setAdapter(adapter);
+        TabLayout tabLayout =(TabLayout) findViewById(R.id.tab);
+        tabLayout.setupWithViewPager(pager);
 
 
     }
