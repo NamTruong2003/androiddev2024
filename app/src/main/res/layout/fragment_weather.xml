@@ -5,12 +5,13 @@
     android:layout_width="300dp"
     android:layout_height="200dp"
     android:layout_marginStart="50dp"
-    android:background="#1aff00"
+    android:background="@drawable/frame1"
     tools:context=".WeatherFragment">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_marginStart="70dp"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/weather1" />
