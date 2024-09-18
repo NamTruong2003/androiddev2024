@@ -47,7 +47,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="Ha Noi"
+                android:text="@string/ha_noi"
                 android:textAlignment="center"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -87,7 +87,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="Ha Giang"
+                android:text="@string/ha_giang"
                 android:textAlignment="center"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -127,7 +127,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="Hung Yen"
+                android:text="@string/hung_yen"
                 android:textAlignment="center"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -167,7 +167,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="Hai Phong"
+                android:text="@string/hai_phong"
                 android:textAlignment="center"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -207,7 +207,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="Yen Bai"
+                android:text="@string/yen_bai"
                 android:textAlignment="center"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -247,7 +247,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="Lao Cai"
+                android:text="@string/lao_cai"
                 android:textAlignment="center"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -287,7 +287,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="Lang Son"
+                android:text="@string/lang_son"
                 android:textAlignment="center"
                 android:textSize="20sp" />
         </LinearLayout>

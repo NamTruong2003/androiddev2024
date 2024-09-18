@@ -1,6 +1,8 @@
 package vn.edu.usth.weather;
 
 
+import android.content.Context;
+import android.media.MediaPlayer;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,10 +18,12 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.InputStream;
+
 
 public class WeatherActivity extends AppCompatActivity {
     private static final String TAG = "FunctionTracing";
-
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -41,6 +45,9 @@ public class WeatherActivity extends AppCompatActivity {
         pager.setAdapter(adapter);
         TabLayout tabLayout =(TabLayout) findViewById(R.id.tab);
         tabLayout.setupWithViewPager(pager);
+
+//        MediaPlayer mediaPlayer = MediaPlayer.create(context,R.raw.music);
+//        mediaPlayer.start();
 
 
     }
