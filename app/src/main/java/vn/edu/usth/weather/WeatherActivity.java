@@ -23,7 +23,7 @@ import java.io.InputStream;
 
 public class WeatherActivity extends AppCompatActivity {
     private static final String TAG = "FunctionTracing";
-    private Context context;
+    private  MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -46,11 +46,21 @@ public class WeatherActivity extends AppCompatActivity {
         TabLayout tabLayout =(TabLayout) findViewById(R.id.tab);
         tabLayout.setupWithViewPager(pager);
 
-//        MediaPlayer mediaPlayer = MediaPlayer.create(context,R.raw.music);
-//        mediaPlayer.start();
+        mediaPlayer = MediaPlayer.create(this,R.raw.music);
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                // Release resources after playback is complete
+                mediaPlayer.release();
+            }
+        });
 
-
+        mediaPlayer.start();
     }
+
+
+
+
     @Override
     protected void onStart(){
         Log.i(TAG,"my app start");
@@ -79,6 +89,9 @@ public class WeatherActivity extends AppCompatActivity {
     protected void onDestroy(){
         Log.i(TAG,"my app destroy");
         super.onDestroy();
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+        }
     }
 
 }
