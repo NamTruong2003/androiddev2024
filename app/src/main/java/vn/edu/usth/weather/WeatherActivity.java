@@ -3,9 +3,11 @@ package vn.edu.usth.weather;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.nfc.Tag;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -134,38 +136,28 @@ public class WeatherActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
-        if (id == R.id.refresh_button){
-            Toast.makeText(getApplicationContext(), "Refresh button is pressed ", Toast.LENGTH_SHORT).show();
+        if (id == R.id.refresh_button) {
+            Toast.makeText(getApplicationContext(), "Refresh button is pressed", Toast.LENGTH_SHORT).show();
 
-            final Handler handler = new Handler(Looper.getMainLooper()) {
+            AsyncTask<Void, Integer, Bitmap> task = new AsyncTask<Void,Integer,Bitmap>() {
                 @Override
-                public void handleMessage(Message msg){
-                    //Thismethodisexecutedinmainthread
-                    String content=msg.getData().getString("server_response");
-                    Toast.makeText(WeatherActivity.this, content,Toast.LENGTH_SHORT).show();
-                }
-            };
-            Thread t= new Thread(new Runnable() {
-                @Override
-                public void run(){
-                    //this method is run in a worker thread
+                protected Bitmap doInBackground(Void... voids) {
                     try {
-                        //wait for 5seconds to simulate a long network access
                         Thread.sleep(3000);
-                    }
-                    catch (InterruptedException e) {
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    //Assumethatwegotourdatafromserver
-                    Bundle bundle= new Bundle();
-                    bundle.putString("server_response","connection require");
-                    //notifymainthread
-                    Message msg= new Message();
-                    msg.setData(bundle);
-                    handler.sendMessage(msg);
+                    return null;
                 }
-            });
-            t.start();
+
+                @Override
+                protected void onPostExecute(Bitmap bitmap) {
+                    // This method is executed on the main thread after doInBackground is finished
+                    Toast.makeText(WeatherActivity.this, "network require", Toast.LENGTH_SHORT).show();
+                }
+            };
+
+            task.execute();
             return true;
         }
         if(id == R.id.menu_button){
