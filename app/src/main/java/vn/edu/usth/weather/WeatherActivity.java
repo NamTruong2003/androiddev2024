@@ -4,6 +4,7 @@ package vn.edu.usth.weather;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.nfc.Tag;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +32,13 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 
 
 public class WeatherActivity extends AppCompatActivity {
@@ -139,25 +147,45 @@ public class WeatherActivity extends AppCompatActivity {
         if (id == R.id.refresh_button) {
             Toast.makeText(getApplicationContext(), "Refresh button is pressed", Toast.LENGTH_SHORT).show();
 
-            AsyncTask<Void, Integer, Bitmap> task = new AsyncTask<Void,Integer,Bitmap>() {
+            AsyncTask<String, Integer, Bitmap> task = new AsyncTask<String,Integer,Bitmap>() {
+
                 @Override
-                protected Bitmap doInBackground(Void... voids) {
+                protected Bitmap doInBackground(String... strings) {
+                    Bitmap bitmap = null;
                     try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException e) {
+                        URL url = new URL(strings[0]);
+                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                        connection.setRequestMethod("GET");
+                        connection.setDoInput(true);
+                        connection.connect();
+                        InputStream is =connection.getInputStream();
+                        bitmap= BitmapFactory.decodeStream(is);
+                        is.close();
+
+
+                    }catch (IOException e){
                         e.printStackTrace();
                     }
-                    return null;
+                    return bitmap;
                 }
 
                 @Override
                 protected void onPostExecute(Bitmap bitmap) {
                     // This method is executed on the main thread after doInBackground is finished
-                    Toast.makeText(WeatherActivity.this, "network require", Toast.LENGTH_SHORT).show();
+                    if(bitmap != null){
+                        ImageView imageView = findViewById(R.id.logo);
+                        imageView.setImageBitmap(bitmap);
+
+
+                        Toast.makeText(WeatherActivity.this, "image is set", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(WeatherActivity.this, "Failed to load image", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             };
 
-            task.execute();
+            task.execute("https://cdn.haitrieu.com/wp-content/uploads/2022/11/Logo-Truong-Dai-hoc-Khoa-hoc-va-Cong-nghe-Ha-Noi.png");
             return true;
         }
         if(id == R.id.menu_button){

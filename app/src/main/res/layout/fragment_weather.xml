@@ -6,6 +6,7 @@
     android:layout_height="200dp"
     android:layout_marginStart="50dp"
     android:background="@drawable/frame1"
+    android:id="@+id/weather_fragment"
     tools:context=".WeatherFragment">
 
     <ImageView
